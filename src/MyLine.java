@@ -1,60 +1,104 @@
 //Brad Ayers
-//Sept 27 - Oct 01, 2024
-//Week 3 Tasks (Carried over from a previous assignment)
+//October 4, 2024
+//QAP2
 
-public class MyPoint {
-    private int x = 0;
-    private int y = 0;
+public class MyLine {
+    private MyPoint begin;
+    private MyPoint end;
 
-    public MyPoint() {
-        this.x = 0;
-        this.y = 0;
+    public MyLine(int x1, int y1, int x2, int y2) {
+        this.begin = new MyPoint(x1, y1);
+        this.end = new MyPoint(x2, y2);
     }
 
-    public MyPoint(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public MyLine(MyPoint begin, MyPoint end) {
+        this.begin = begin;
+        this.end = end;
     }
 
-    public int getX() {
-        return this.x;
+    public MyPoint getBegin() {
+        return this.begin;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setBegin(MyPoint begin) {
+        this.begin = begin;
     }
 
-    public int getY() {
-        return this.y;
+    public MyPoint getEnd() {
+        return this.end;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setEnd(MyPoint end) {
+        this.end = end;
     }
 
-    public void setXY(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public int getBeginX() {
+        return this.begin.getX();
+    }
+
+    public void setBeginX(int x1) {
+        this.begin.setX(x1);
+    }
+
+    public int getBeginY() {
+        return this.begin.getY();
+    }
+
+    public void setBeginY(int y1) {
+        this.begin.setY(y1);
+    }
+
+    public int getEndX() {
+        return this.end.getX();
+    }
+
+    public void setEndX(int x2) {
+        this.end.setX(x2);
+    }
+
+    public int getEndY() {
+        return this.end.getY();
+    }
+
+    public void setEndY(int y2) {
+        this.end.setY(y2);
+    }
+
+    public int[] getBeginXY() {
+        int[] xy = new int[2];
+        xy[0] = this.begin.getX();
+        xy[1] = this.begin.getY();
+        return xy;
+    }
+
+    public void setBeginXY(int x1, int y1) {
+        this.begin.setX(x1);
+        this.begin.setY(y1);
+    }
+
+    public int[] getEndXY() {
+        int[] xy = new int[2];
+        xy[0] = this.end.getX();
+        xy[1] = this.end.getY();
+        return xy;
+    }
+
+    public void setEndXY(int x2, int y2) {
+        this.end.setX(x2);
+        this.end.setY(y2);
+    }
+
+    public double getLength() {
+        return this.begin.distance(end);
+    }
+
+    public double getGradient() {
+        int xDiff = this.begin.getX() - this.end.getX();
+        int yDiff = this.begin.getY() - this.end.getY();
+        return Math.atan2(yDiff, xDiff);
     }
 
     public String toString() {
-        return "(" + this.x + ", " + this.y + ")";
-    }
-
-    public double distance(int x, int y) {
-        int xDiff = this.x - x;
-        int yDiff = this.y - y;
-        return Math.sqrt(xDiff*xDiff + yDiff*yDiff);
-    }
-
-    public double distance(MyPoint another) {
-        int xDiff = this.x - another.x;
-        int yDiff = this.y - another.y;
-        return Math.sqrt(xDiff*xDiff + yDiff*yDiff);
-    }
-
-    //Distance from (0,0)
-    public double distance() {
-        return Math.sqrt(this.x*this.x + this.y*this.y);
+        return "MyLine[begin=" + this.begin.toString() + ",end=" + this.end.toString() + "]";
     }
 }
